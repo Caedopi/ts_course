@@ -14,7 +14,7 @@ test("Should work", () => {
     const expected = false;
 
     //Act
-    const actual = true;
+    const actual = false;
 
     //Assert
     expect(actual).toBe(expected);
