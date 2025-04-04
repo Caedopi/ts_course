@@ -1,7 +1,6 @@
-export let data: Record<string, number | string>
+export const data = {
+    entry1: 1,
+    entry2: 2,
+};
 
-data = {
-    entry1:1,
-    entry2:2
-}
-
+console.log("arrays-objects.ts loaded, data =", data);
