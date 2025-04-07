@@ -1,8 +1,10 @@
+
 let userName: string;
 let userAge = 38;
 
 userName = 'admin';
+userAge = 30;
 
-function add(a:number, b:number) {
+export function add(a:number, b:number) {
     return a + b;
 }

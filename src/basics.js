@@ -1,2 +1,0 @@
-var userName;
-userName = 'admin';
