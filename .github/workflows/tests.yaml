@@ -11,25 +11,23 @@ env:
 jobs:
   test:
     runs-on: ubuntu-latest
-    container:
-      image: built-image:latest
-      build:
-        dockerfile: Dockerfile
-        context: .
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Run tests
-        run: npm test
+      - name: Build docker image from root Dockerfile
+        run: docker build -t my-test-image:latest -f Dockerfile .
+
+      - name: Run tests in container
+        run: docker run --rm my-test-image:latest npm test
 
       - name: Comment PR if tests fail
         if: failure()
         run: |
-          comment=$'Your tests have failed, see below the failures output:\n'
+          comment="Your tests have failed, see below the failures output:\n"
           curl \
             -X POST \
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
-            $comment_url \
-            -d "{\"body\": $escaped_comment}"
+            "$comment_url" \
+            -d "{\"body\": \"$escaped_comment\"}"
