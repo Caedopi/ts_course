@@ -11,29 +11,23 @@ env:
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
+      - name: Build docker image from root Dockerfile
+        run: docker build -t my-test-image:latest -f Dockerfile .
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run tests
-        run: npm test
+      - name: Run tests in container
+        run: docker run --rm my-test-image:latest npm test
 
       - name: Comment PR if tests fail
         if: failure()
         run: |
-          comment=$'Your tests have failed, see below the failures output:\n'
+          comment="Your tests have failed, see below the failures output:\n"
           curl \
             -X POST \
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
-            $comment_url \
-            -d "{\"body\": $escaped_comment}"
+            "$comment_url" \
+            -d "{\"body\": \"$escaped_comment\"}"
