@@ -6,7 +6,8 @@ module.exports = {
     "^.+\.tsx?$": ["ts-jest",{}],
   },
   testMatch: [
-    "**/tests/**/*.[jt]s?(x)", // looks for any JS/TS files under any subdirectory of /tests
+    "**/Project_01_Types/tests/**/*.[jt]s?(x)",
+    "**/Project_02_Config/tests/**/*.[jt]s?(x)",
     "**/?(*.)+(spec|test).[tj]s?(x)" // default Jest pattern
   ],
 };
