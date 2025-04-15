@@ -1,13 +1,16 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} **/
 module.exports = {
   preset: "ts-jest",
+  rootDir: ".",
   testEnvironment: "node",
   transform: {
-    "^.+\.tsx?$": ["ts-jest",{}],
+    "^.+\.tsx?$": ["ts-jest",{
+      tsconfig: "./Project_02_Calculator/tsconfig.json"
+    }]
   },
   testMatch: [
     "**/Project_01_Types/tests/**/*.[jt]s?(x)",
-    "**/Project_02_Config/tests/**/*.[jt]s?(x)",
+    "**/Project_02_Calculator/tests/**/*.[jt]s?(x)",
     "**/?(*.)+(spec|test).[tj]s?(x)" // default Jest pattern
   ],
 };
