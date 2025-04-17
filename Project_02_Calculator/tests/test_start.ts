@@ -1,21 +1,35 @@
-import {InvestmentInput, calculateInvestment} from "../src/calculator";
+import {InvestmentInput, calculateInvestment, printResults} from "../src/calculator";
 
 
-test("Should work", () => {
-    // Arrange
-    const input_data: InvestmentInput = {
-        initialAmount : 2,
-        annualContribution : 3,
-        expectedReturn : 9,
-        duration: 2
+interface Scenario {
+    input: InvestmentInput;
+    expected: string[];
+}
+
+const scenarios: Scenario[] = [
+    {
+        input: {initialAmount: 2, annualContribution: 3, expectedReturn: 9, duration: 2},
+        expected: ["Duration is 2 years", "Expected return is 9 years"]
     }
+];
 
-    const expected = ["Duration is 2", "Expected return is 9"]
+test.each(scenarios)("Should work with each",
+    ({input, expected}) => {
+        const result = calculateInvestment(input);
+        expect(result).toEqual(expected);
+    })
 
-    // Act
-    const actual = calculateInvestment(input_data)
 
+test("Should print result", () => {
+    // Arrange
+    const input_list = ["Duration is 2 years", "Expected return is 9 years"]
+
+    const expected = "Duration is 2 years; Expected return is 9 years"
+
+    // Actual
+    const actual = printResults(input_list)
 
     // Assert
     expect(actual).toEqual(expected)
 })
+
