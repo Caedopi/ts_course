@@ -6,14 +6,11 @@ export type InvestmentInput = {
 };
 
 export function calculateInvestment(data: InvestmentInput) {
-    return ["Duration is " + data.initialAmount, "Expected return is 9"]
+    return [`Duration is ${data.initialAmount} years`, `Expected return is ${data.expectedReturn} years`]
 }
 
-// function printResults(results) {
-//
-// }
-//
-//
-// const results = calculateInvestment(...data);
-//
-// printResults(results);
+export function printResults(results: string[]) {
+    return results.join("; ")
+}
+
+
