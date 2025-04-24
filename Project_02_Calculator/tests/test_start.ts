@@ -1,4 +1,4 @@
-import {InvestmentInput, InvestmentResult, calculateInvestment, printResults} from "../src/calculator";
+import {InvestmentInput, InvestmentResult, calculateInvestment} from "../src/calculator";
 
 
 interface Scenario {
