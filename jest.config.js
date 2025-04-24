@@ -11,6 +11,7 @@ module.exports = {
   testMatch: [
     "**/Project_01_Types/tests/**/*.[jt]s?(x)",
     "**/Project_02_Calculator/tests/**/*.[jt]s?(x)",
+    "**/Project_03_Modules/tests/**/*.[jt]s?(x)",
     "**/?(*.)+(spec|test).[tj]s?(x)" // default Jest pattern
   ],
 };
